@@ -1,6 +1,5 @@
 # if not installed, you can install the package with
-# pip install cinemagoer 
-# or 
+# pip install cinemagoer or 
 # pip3 install cinemagoer
 
 from imdb import Cinemagoer

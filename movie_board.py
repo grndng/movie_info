@@ -1,9 +1,19 @@
+# pip3 install streamlit streamlit-aggrid
 import streamlit as st
 import pandas as pd
 import numpy as np
 from st_aggrid import AgGrid, JsCode, GridOptionsBuilder
 
-def slice_for_link_only(link):
+def slice_for_link_only(link: str) -> str:
+    """Helper function to slice the string we are using as link formatted in markdown in our
+    output.txt so we can use it to generate clickable hyperlinks in a table later on.
+
+    Args:
+        link (str): String with Markdown-Syntax containing the link to IMDb
+
+    Returns:
+        str: Hyperlink to IMDb
+    """
     _, link = link[:-2].split("](")
     return link
 
@@ -16,6 +26,8 @@ df["Name"] = df["Name"].str.replace("- ", "")
 df["Link"] = df["Link"].apply(slice_for_link_only)
 
 
+# Could find a solution to build a grid with st_aggrid on the streamlit
+# forums proposed by the user edsaac:
 # https://discuss.streamlit.io/t/how-to-display-a-clickable-link-pandas-dataframe/32612/5
 gb = GridOptionsBuilder.from_dataframe(df)
 
